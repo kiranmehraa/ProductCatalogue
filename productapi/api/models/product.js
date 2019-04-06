@@ -14,8 +14,8 @@ const productSchema = mongoose.Schema({
     },
 },
 {
-    timestamps: true
-});
+  timestamps : true
+})	
 
 // Exporting the schema as a model
 module.exports = mongoose.model('Product', productSchema);

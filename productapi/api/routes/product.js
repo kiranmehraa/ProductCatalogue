@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Product = require("../models/product")
+const AuthUser = require("../middleware/AuthUser")
 
  router.get('/',(req, res,next) => {
 	Product.find()
@@ -23,7 +24,7 @@ router.get("/feature", (req, res) => {
 });
 
 
-router.post('/',(req,res,next) => {
+router.post('/',AuthUser,(req,res,next) => {
 	const product = new Product({
  		_id : new mongoose.Types.ObjectId(),
  		name : req.body.name,
@@ -59,7 +60,7 @@ router.get("/:ProductID", (req,res,next) => {
 		});
 	});
 });
-router.patch("/:ProductID",(req,res,next)=>{
+router.patch("/:ProductID",AuthUser,(req,res,next)=>{
 
  
   const id = req.params.ProductID;
